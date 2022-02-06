@@ -1,7 +1,19 @@
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+import { CartContext, useCartState } from '../hooks/use-cart.js';
 
-export default MyApp
+import Nav from '../components/Nav';
+
+  function MyApp({ Component, pageProps }) {
+
+    const cart = useCartState();
+
+    return (
+      <CartContext.Provider value={cart}>
+          <Nav />
+          <Component {...pageProps} />
+      </CartContext.Provider>
+    );
+  }
+
+  export default MyApp
